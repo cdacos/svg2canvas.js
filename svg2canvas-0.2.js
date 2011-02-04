@@ -123,7 +123,10 @@ function svg2canvas(element, svg, animateInterval) {
         pathMatch = pathRegEx.exec(svg);
         if (pathMatch != null) {
             drawPath(pathMatch[1]);
-            setTimeout(draw, drawInterval);
+            if (drawInterval > 0)
+                setTimeout(draw, drawInterval);
+            else
+                draw();
         } else { // Finished
             c.setTransform(1.0,0.0,0.0,1.0,0.0,0.0);
             debug(null);
